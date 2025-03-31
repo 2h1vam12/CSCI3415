@@ -1,0 +1,115 @@
+%{
+#include <iostream>
+#include <sstream>
+#include <cmath>
+#include <stdexcept>
+
+using namespace std;
+
+double operand1 = 0, operand2 = 0;  // Stores the two numbers
+char operatorSymbol = 0;            // Stores the operator
+bool operatorUsed = false;           // Tracks if an operator was already used
+
+void calculate();   // Function to evaluate the expression
+void yyerror(const char *s); // Error handling
+%}
+
+/* 
+ * 🔹 Part 1: Regular Expressions (Included)
+ * - Alphabet: [A-Za-z]   (Not used in Part 2)
+ * - Digit: [0-9]         (Used for numbers)
+ * - Unsigned Integer: [0-9]+
+ * - Unsigned Decimal Number: [0-9]+(\.[0-9]+)?
+ * - Unsigned Decimal in Scientific Notation: [0-9]+(\.[0-9]+)?[eE][+-]?[0-9]+
+ */
+
+%%
+[0-9]+(\.[0-9]+)?  { 
+    cout << "NUMBER: " << yytext << endl; 
+    if (!operatorUsed) {
+        operand1 = stod(yytext); 
+    } else {
+        operand2 = stod(yytext); 
+    }
+}
+
+[\+\-\*/\^]  { 
+    if (operatorUsed) {
+        cout << "ERROR: Consecutive operators are not allowed.\n";
+        operatorSymbol = 0;  // Reset operator to prevent calculation
+    } else {
+        cout << "OPERATOR: " << yytext << endl; 
+        operatorSymbol = yytext[0]; 
+        operatorUsed = true;  // Mark that an operator has been used
+    }
+}
+
+\n  { 
+    if (operatorSymbol != 0 && operatorUsed && operand2 == 0 && operatorSymbol == '/') {
+        cout << "ERROR: Division by zero." << endl; 
+    } else if (operatorSymbol && operand2) {
+        calculate();
+    } else {
+        cout << "ERROR: Invalid expression format." << endl;
+    }
+    
+    // Reset after processing one expression
+    operand1 = operand2 = 0; 
+    operatorSymbol = 0; 
+    operatorUsed = false;  
+}
+<<EOF>> {
+    cout<< "Bye!!" <<endl;
+    exit(0);
+}
+
+[ \t]+ { /* Ignore spaces and tabs */ }
+
+.  { 
+    cout << "ERROR: Invalid character " << yytext << endl; 
+    yyerror("Invalid character detected."); 
+}
+
+%%
+
+/* Function to Evaluate the Expression */
+void calculate() {
+    double result = 0;
+    try {
+        switch (operatorSymbol) {
+            case '+': result = operand1 + operand2; break;
+            case '-': result = operand1 - operand2; break;
+            case '*': result = operand1 * operand2; break;
+            case '/': 
+                if (operand2 == 0) throw runtime_error("ERROR: Division by zero.");
+                result = operand1 / operand2; 
+                break;
+            case '^': result = pow(operand1, operand2); break;
+            default:
+                throw invalid_argument("ERROR: Unsupported operator.");
+        }
+        cout << "Result: " << result << endl;
+    } catch (const exception& e) {
+        cerr << e.what() << endl;
+    }
+}
+
+/* Error Handling */
+void yyerror(const char *s) {
+    cerr << "Error: " << s << endl;
+}
+
+/* Main Function */
+int main() {
+    cout << "TinyCalculator (C++ Version): Enter binary expressions (e.g., 5 + 3)" << endl;
+    cout << "Supported Operators: + - * / ^" << endl;
+    cout << "Enter an expression and press ENTER:\n" << endl;
+
+    yylex(); // Run lexer
+    return 0;
+}
+
+int yywrap() {
+    return 1;
+}
+
