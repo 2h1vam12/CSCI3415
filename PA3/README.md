@@ -59,14 +59,14 @@ researching for Question 1.
 - `socialsent.csv`: CSV file with words and their sentiment scores
 - `review.txt`: Default review file (can be swapped out)
 - `good.txt`, `bad.txt`: Additional test reviews
-- `outputs.txt`: Outputs of main.rs 
+- `PathakHw4outputs.txt` and 'PathakHw4outputs.pdf': Outputs of main.rs 
 - `PathakCSCI3415Hw4Part1.pdf`: Answers to Part 1 of Homework 4
 - `README.md`: You’re reading it :)
 - *No Makefile is needed* 
 
 ##  How to Run (on Replit or locally)
 
-- I ran and tested the code entirely oon REPLIT [Replit](https://replit.com).
+- I ran and tested the code entirely on REPLIT [Replit](https://replit.com).
 - No Makefile was needed, since Rust uses Cargo to build and run code:
   ```bash
   cargo run -- good.txt
