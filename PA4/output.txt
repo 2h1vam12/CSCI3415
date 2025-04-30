@@ -1,0 +1,45 @@
+
+My Cart
+=======
+
+Cart Owner: John Smith
+
+
+[Music]
+Product ID: 1   Product Name: Yesterday
+Price: $16.5   Product Review Rate: 9.8
+Singer Name: Beetles 
+Genre: Pop
+
+[Music]
+Product ID: 3   Product Name: Love Story
+Price: $12.99   Product Review Rate: 8.9
+Singer Name: Taylor Swift
+Genre: Folk
+
+[Movie]
+Product ID: 4   Product Name: Sound of Music
+Price: $22   Product Review Rate: 9.2
+Director Name: Robert Wise
+Release Year: 1965
+Runtime: 175 minutes
+Film Rating: G
+
+[Movie]
+Product ID: 5   Product Name: Star Wars
+Price: $22   Product Review Rate: 8.5
+Director Name: George Lucas
+Release Year: 1977
+Runtime: 120 minutes
+Film Rating: PG
+
+[E book]
+Product ID: 6   Product Name: The Old Man and the Sea
+Price: $8.3   Product Review Rate: 9.5
+Author: Ernest Hemmingway
+Pages: 127
+
+===== Summary of Purchase ======
+Total number of purchases: 5
+Total purchasing amount: $81.79
+Average cost: $16.36

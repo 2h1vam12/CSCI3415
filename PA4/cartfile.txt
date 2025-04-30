@@ -1,0 +1,7 @@
+Audio,Yesterday,16.5,Beetles ,Pop,9.8
+Audio,We are the World,13.75,Michael Jackson,Country,9.1
+Audio,Love Story,12.99,Taylor Swift,Folk,8.9
+Video,Sound of Music,22,Robert Wise,1965,175,G,9.2
+Video,Star Wars,22,George Lucas,1977,120,PG,8.5
+Ebook,The Old Man and the Sea,8.3,Ernest Hemmingway,127,9.5
+Paperbook,To Kill a Mockingbird,10.5,Harper Lee,281,9.6
